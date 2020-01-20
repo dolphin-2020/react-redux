@@ -1,9 +1,8 @@
 import React,{Component,Fragment} from 'react'
-
+import styles from '../src/styles.js'
 export default class CompleteTodo extends Component{
   constructor(props){
     super(props);
-    this.completeDel=this.completeDel.bind(this);
   }
 
 
@@ -20,15 +19,15 @@ export default class CompleteTodo extends Component{
     let {item}= this.props;
     return(
     <Fragment>
-      {item}
-      <img src="../src/img/minus.png" onClick={this.completeDel} style={{width:"30px",height:"30px",float:"right",marginRight:"10px"}}/>       
+      {this.props.item}
+      <img src="../src/img/minus.png" onClick={this.props.completeDel} style={styles.delImg}/>       
     </Fragment>
     )
   }
 
  
-  completeDel(){
-    let {completeDel,index}=this.props;
-    completeDel(index)
-  }
+  // completeDel(){
+  //   let {completeDel,index}=this.props;
+  //   completeDel(index)
+  // }
 }

@@ -1,67 +1,43 @@
 import React,{Component,Fragment} from 'react'
-import TodoItem from './todoItem.jsx'
-import CompleteTodo from './complete.jsx'
-import axios from 'axios'//...
-import store from '../src/store/index.js'
+import store from '../src/store/'
 import Header from '../component/header.jsx'
-import styles from '../src/styles.js'
+import IncompleteUi from '../src/incompleteUi.jsx'
+import CompleteUi from '../src/completeUi.jsx'
 
 class TodoList extends Component{
   constructor(props){
     super(props);
     this.state=store.getState();
     this.storeChange=this.storeChange.bind(this);
+    this.completeDel=this.completeDel.bind(this);
+    this.valChange=this.valChange.bind(this);
+    this.addVal=this.addVal.bind(this);
+    this.completeAdd=this.completeAdd.bind(this);
     store.subscribe(this.storeChange);
-    this.completeDel=this.completeDel.bind(this)
   }
 
   render(){
     return(
       <Fragment>
+        <Header 
+          inputVal={this.state.inputVal}
+          addVal={this.addVal}
+          valChange={this.valChange}
+           />
+        <IncompleteUi 
+          displayList={this.state.displayList}
+          completeAdd={this.completeAdd}
+          del={this.del}
+        />
 
-        <Header inputVal={this.state.inputVal} />
-
-{/*----------------------incomplete list--------------------*/}         
-        <div style={styles.showDiv}>
-          <p style={styles.contentHead}>Incomplete Box</p>
-          <ul style={styles.showUl}>
-            {                
-            this.state.displayList.map((item,index)=>{
-            return <li 
-              key={new Date().getTime() + index} 
-              style={styles.showLi}>
-                <TodoItem 
-                del={this.del.bind(this)} 
-                item={item} 
-                completeAdd={this.completeAdd.bind(this)}
-                index={index}
-                />
-              </li>
-            })
-          }
-        </ul>
-      </div>
-{/*---------------------Complete list---------------------*/}
-      <div style={styles.completeDiv}>
-      <p style={styles.contentHead}>Complete Box</p>
-      <ul style={styles.showUl}>
-        {                 
-          this.state.completeList.map((item,index)=>{
-          return <li 
-              key={new Date().getTime() + index} 
-              style={styles.showLi}>
-              <CompleteTodo 
-                item={item} index={index} 
-                completeDel={this.completeDel}
-              />
-            </li>
-          })
-        }
-      </ul>
-    </div>
+    <CompleteUi
+      completeList={this.state.completeList}
+      completeDel={this.completeDel}
+    />
     </Fragment>
     )
   }
+
 //-----------------------------Method---------------------------->
 
   del(index){
@@ -90,6 +66,21 @@ class TodoList extends Component{
 
   storeChange(){
     this.setState(store.getState());
+  }
+
+  addVal(){
+    const action={
+      type:"add_todo_item",
+    }
+    store.dispatch(action);
+  }
+
+  valChange(e){
+    const action={
+      type:"change_input_value",
+      value:e.target.value
+    };
+    store.dispatch(action);
   }
 }
 

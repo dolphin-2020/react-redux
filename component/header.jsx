@@ -1,13 +1,11 @@
 import React ,{Component,Fragment}from 'react'
 import { Input,Button} from 'antd'
-import store from '../src/store/index.js'
 import styles from '../src/styles.js'
 
 export default class Header extends Component{
   constructor(props){
     super(props);
-    this.valChange=this.valChange.bind(this);
-    this.addVal=this.addVal.bind(this)
+
   }
 
 render(){
@@ -23,11 +21,11 @@ render(){
           value={this.props.inputVal}
           placeholder="Please enter text" 
           style={styles.input} 
-          onChange={this.valChange}
+          onChange={this.props.valChange}
         />
         <Button 
           type="submit" 
-          onClick={this.addVal}  
+          onClick={this.props.addVal}  
           style={styles.btn} >
           Submit
         </Button>
@@ -35,18 +33,18 @@ render(){
     )
   }
 
-  addVal(){
-    const action={
-      type:"add_todo_item",
-    }
-    store.dispatch(action);
-  }
+  // addVal(){
+  //   const action={
+  //     type:"add_todo_item",
+  //   }
+  //   store.dispatch(action);
+  // }
 
-  valChange(e){
-    const action={
-      type:"change_input_value",
-      value:e.target.value
-    };
-    store.dispatch(action);
-  }
+  // valChange(e){
+  //   const action={
+  //     type:"change_input_value",
+  //     value:e.target.value
+  //   };
+  //   store.dispatch(action);
+  // }
 }

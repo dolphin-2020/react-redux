@@ -3,8 +3,6 @@ import styles from '../src/styles.js'
 export default class TodoItem extends Component{
   constructor(props){
     super(props);
-    this.del=this.del.bind(this);
-    this.completeAdd=this.completeAdd.bind(this);
   }
 
   shouldComponentUpdate(nextProps){
@@ -23,26 +21,16 @@ export default class TodoItem extends Component{
       {item}
       <img 
         src="../src/img/add.png" 
-        onClick={this.completeAdd} 
+        onClick={this.props.completeAdd} 
         style={styles.delImg}
       />
 
       <img 
         src="../src/img/minus.png" 
-        onClick={this.del} 
+        onClick={this.props.del} 
         style={styles.delImg}
       />       
     </Fragment>
     )
-  }
-
-  del(){
-    let {del,index}=this.props;
-    del(index);
-  }
-
-  completeAdd(){
-    let {completeAdd,index}=this.props;
-    completeAdd(index);
   }
 }
