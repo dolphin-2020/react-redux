@@ -24,7 +24,7 @@ class IncompleteUi extends Component{
 
           <img 
             src="../src/img/minus.png" 
-            onClick={this.props.del} 
+            onClick={this.props.incompleteDel} 
             style={styles.delImg}
           />    
         </li>

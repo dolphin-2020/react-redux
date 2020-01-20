@@ -27,7 +27,7 @@ class TodoList extends Component{
         <IncompleteUi 
           displayList={this.state.displayList}
           completeAdd={this.completeAdd}
-          del={this.del}
+          incompleteDel={this.incompleteDel}
         />
 
         <CompleteUi
@@ -40,7 +40,7 @@ class TodoList extends Component{
 
 //-----------------------------Method---------------------------->
 
-  del(index){
+  incompleteDel(index){
     const action={
       type:"delete_todo_item",
       index
