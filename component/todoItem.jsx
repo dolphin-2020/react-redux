@@ -1,5 +1,5 @@
 import React,{Component,Fragment} from 'react'
-
+import styles from '../src/styles.js'
 export default class TodoItem extends Component{
   constructor(props){
     super(props);
@@ -21,8 +21,17 @@ export default class TodoItem extends Component{
     return(
     <Fragment>
       {item}
-      <img src="../src/img/add.png" onClick={this.completeAdd} style={{width:"30px",height:"30px",float:"right",marginRight:"10px"}}/>
-      <img src="../src/img/minus.png" onClick={this.del} style={{width:"30px",height:"30px",float:"right",marginRight:"10px"}}/>       
+      <img 
+        src="../src/img/add.png" 
+        onClick={this.completeAdd} 
+        style={styles.delImg}
+      />
+
+      <img 
+        src="../src/img/minus.png" 
+        onClick={this.del} 
+        style={styles.delImg}
+      />       
     </Fragment>
     )
   }
