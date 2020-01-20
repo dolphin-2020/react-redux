@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import styles from './styles.js'
+import styles from '../src/styles.js'
 class CompleteUi extends Component{
   constructor(props){
     super(props);

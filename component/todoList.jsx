@@ -1,8 +1,8 @@
 import React,{Component,Fragment} from 'react'
 import store from '../src/store/'
-import Header from '../component/header.jsx'
-import IncompleteUi from '../src/incompleteUi.jsx'
-import CompleteUi from '../src/completeUi.jsx'
+import Header from './header.jsx'
+import IncompleteUi from './incompleteUi.jsx'
+import CompleteUi from './completeUi.jsx'
 
 class TodoList extends Component{
   constructor(props){
@@ -30,11 +30,11 @@ class TodoList extends Component{
           del={this.del}
         />
 
-    <CompleteUi
-      completeList={this.state.completeList}
-      completeDel={this.completeDel}
-    />
-    </Fragment>
+        <CompleteUi
+          completeList={this.state.completeList}
+          completeDel={this.completeDel}
+        />
+      </Fragment>
     )
   }
 
